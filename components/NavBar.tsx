@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import { signIn, signOut, useSession } from 'next-auth/client';
 
 export default function NavBar() {
+  const [session, loading] = useSession();
   // TODO: add next-auth login
   const [loggedIn, setLoggedIn] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -106,18 +108,32 @@ export default function NavBar() {
         </button>
 
         {/* login button */}
-        <div
-          className="hidden sm:flex items-end cursor-pointer"
-          onClick={() => setLoggedIn(!loggedIn)}
-        >
-          {/* TODO: change login state using next-auth */}
-          {loggedIn ? (
-            <>
+        <div className="hidden sm:flex items-end cursor-pointer">
+          {!session && (
+            <a
+              href="/api/auth/signin"
+              onClick={(event) => {
+                event.preventDefault();
+                signIn();
+              }}
+            >
+              log in
+            </a>
+          )}
+          {session?.user && (
+            // TODO: add another menu to add sign out and other options (profile, watchlist, ...)
+            <a
+              href="/api/auth/signout"
+              onClick={(event) => {
+                event.preventDefault;
+                signOut();
+              }}
+            >
               <span className="pr-1">hi,</span>
-              <span className="font-bold">user</span>
-            </>
-          ) : (
-            `log in`
+              <span className="font-bold">
+                {session.user.name?.split(' ')[0]}
+              </span>
+            </a>
           )}
         </div>
       </div>
@@ -139,22 +155,27 @@ export default function NavBar() {
           <Link href="/about">about</Link>
         </div>
         <div>
-          {/* TODO: change login state using next-auth */}
-          {loggedIn ? (
-            <div
-              className="cursor-pointer inline"
-              onClick={() => setLoggedIn(!loggedIn)}
-            >
-              <span className="pr-1">hi,</span>
-              <span className="font-bold">user</span>
-            </div>
-          ) : (
-            <div
-              className="cursor-pointer inline"
-              onClick={() => setLoggedIn(!loggedIn)}
+          {!session && (
+            <a
+              href="/api/auth/signin"
+              className="inline"
+              onClick={() => signIn()}
             >
               log in
-            </div>
+            </a>
+          )}
+          {session?.user && (
+            // TODO: add extra menu options for sign out, profile, watchlist, ...
+            <a
+              href="/api/auth/signout"
+              className="inline"
+              onClick={() => signOut()}
+            >
+              <span className="pr-1">hi,</span>
+              <span className="font-bold">
+                {session.user.name?.split(' ')[0]}
+              </span>
+            </a>
           )}
         </div>
       </div>
