@@ -44,9 +44,7 @@ export default function QuestionPlaybackSpeed() {
       </div>
 
       <div className="flex flex-col items-center justify-center pb-4 space-y-4">
-        <button className="bg-gray-800 rounded shadow-md text-center px-4 py-2 w-max cursor-pointer">
-          get recommendations
-        </button>
+        <button className="btn">get recommendations</button>
         <div className="text-gray-400 text-center text-sm">
           or narrow the search down further...
         </div>
