@@ -10,7 +10,7 @@ import QuestionStreamingService from '../components/Questions/QuestionStreamingS
 
 export default function questions() {
   const [page, setPage] = useState(1);
-  const [contentType, setContentType] = useState({ movies: false, tv: false });
+  const [contentType, setContentType] = useState({ movies: true, tv: false });
   const [timeAvailable, setTimeAvailable] = useState(1 * 60);
   const [playbackSpeed, setPlaybackSpeed] = useState(1.0);
   const [genre, setGenre] = useState({
@@ -28,6 +28,8 @@ export default function questions() {
   } | null>(null);
   const [streamingRegion, setStreamingRegion] = useState(null);
   const [streamingService, setStreamingService] = useState(null);
+
+  // TODO: calculate final speed from playback speed and time available
 
   const pageUp = (): void => {
     const nextPage: number = page - 1;
@@ -51,6 +53,14 @@ export default function questions() {
     setContentType(updatedContentType);
   };
 
+  const updateTimeAvaliable = (time: number): void => {
+    setTimeAvailable(time);
+  };
+
+  const updatePlaybackSpeed = (speed: number): void => {
+    setPlaybackSpeed(speed);
+  };
+
   const questionPage = () => {
     switch (page) {
       case 1:
@@ -62,9 +72,24 @@ export default function questions() {
           />
         );
       case 2:
-        return <QuestionTimeAvailable pageUp={pageUp} pageDown={pageDown} />;
+        return (
+          <QuestionTimeAvailable
+            timeAvailable={timeAvailable}
+            updateTimeAvailable={updateTimeAvaliable}
+            pageUp={pageUp}
+            pageDown={pageDown}
+          />
+        );
       case 3:
-        return <QuestionPlaybackSpeed pageUp={pageUp} pageDown={pageDown} />;
+        return (
+          <QuestionPlaybackSpeed
+            playbackSpeed={playbackSpeed}
+            updatePlaybackSpeed={updatePlaybackSpeed}
+            timeAvailable={timeAvailable}
+            pageUp={pageUp}
+            pageDown={pageDown}
+          />
+        );
       case 4:
         return <QuestionGenre pageUp={pageUp} pageDown={pageDown} />;
       case 5:

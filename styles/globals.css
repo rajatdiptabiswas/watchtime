@@ -5,8 +5,8 @@
 @tailwind utilities;
 
 * {
-  /* outline: 1px dotted gray; */
-  /* outline-offset: -1px; */
+  /* outline: 1px dotted gray;
+  outline-offset: -1px; */
 }
 
 @layer base {

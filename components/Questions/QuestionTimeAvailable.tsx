@@ -1,12 +1,31 @@
+import Counter from '../Counter';
+
 interface QuestionTimeAvailableProps {
+  timeAvailable: number;
+  updateTimeAvailable: (time: number) => void;
   pageUp: () => void;
   pageDown: () => void;
 }
 
 export default function QuestionTimeAvailable({
+  timeAvailable,
+  updateTimeAvailable,
   pageUp,
   pageDown,
 }: QuestionTimeAvailableProps) {
+  let hours = Math.floor(timeAvailable / 60);
+  let minutes = timeAvailable % 60;
+
+  const updateHours = (updatedHours: number): void => {
+    hours = updatedHours;
+    updateTimeAvailable(60 * hours + minutes);
+  };
+
+  const updateMinutes = (updatedMinutes: number): void => {
+    minutes = updatedMinutes;
+    updateTimeAvailable(60 * hours + minutes);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center mt-16 min-h-container">
       <div className="flex flex-col items-end justify-center pt-2">
@@ -33,10 +52,23 @@ export default function QuestionTimeAvailable({
           how long do you have?
         </div>
 
-        <div className="flex whitespace-nowrap overflow-x-scroll space-x-4 p-4 md:px-10 max-w-full scrollbar-hide">
-          <div className="border-gray-100 border-2 rounded px-4 py-2">hrs</div>
-
-          <div className="border-gray-100 border-2 rounded px-4 py-2">mins</div>
+        <div className="flex space-x-8 p-4 md:px-10">
+          <Counter
+            name={'hrs'}
+            min={0}
+            max={10}
+            step={1}
+            value={hours}
+            updateCount={updateHours}
+          />
+          <Counter
+            name={'mins'}
+            min={0}
+            max={45}
+            step={15}
+            value={minutes}
+            updateCount={updateMinutes}
+          />
         </div>
       </div>
 

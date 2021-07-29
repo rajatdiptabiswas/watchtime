@@ -1,12 +1,35 @@
+import { useState, useEffect } from 'react';
+import Counter from '../Counter';
+
 interface QuestionPlaybackSpeedProps {
+  playbackSpeed: number;
+  updatePlaybackSpeed: (speed: number) => void;
+  timeAvailable: number;
   pageUp: () => void;
   pageDown: () => void;
 }
 
 export default function QuestionPlaybackSpeed({
+  playbackSpeed,
+  updatePlaybackSpeed,
+  timeAvailable,
   pageUp,
   pageDown,
 }: QuestionPlaybackSpeedProps) {
+  let currentTime = timeAvailable / playbackSpeed;
+  let hours = Math.floor(currentTime / 60);
+  let minutes = currentTime % 60;
+
+  useEffect(() => {
+    currentTime = timeAvailable / playbackSpeed;
+    hours = Math.floor(currentTime / 60);
+    minutes = currentTime % 60;
+  }, [playbackSpeed]);
+
+  const handlePlaybackSpeedUpdate = (speed: number): void => {
+    updatePlaybackSpeed(speed);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center mt-16 min-h-container">
       <div className="flex flex-col items-end justify-center pt-2">
@@ -34,10 +57,16 @@ export default function QuestionPlaybackSpeed({
             what playback speed will you use?
           </div>
 
-          <div className="flex whitespace-nowrap overflow-x-scroll space-x-4 sm:space-x-6 p-4 md:px-10 max-w-full scrollbar-hide">
-            <div className="border-gray-100 border-2 rounded px-4 py-2">
-              times
-            </div>
+          <div className="flex p-4 md:px-10">
+            <Counter
+              name={'times'}
+              min={0.5}
+              max={3.0}
+              step={0.25}
+              value={playbackSpeed}
+              decimalPlaces={2}
+              updateCount={handlePlaybackSpeedUpdate}
+            />
           </div>
         </div>
 
@@ -45,7 +74,10 @@ export default function QuestionPlaybackSpeed({
           <div className="text-gray-400 font-semibold text-xl">
             total watchtime
           </div>
-          <div className="text-xl">3 hrs</div>
+          <div className="text-xl">
+            {hours > 0 && `${hours.toFixed(0)} hrs `}
+            {`${minutes.toFixed(0)} mins`}
+          </div>
         </div>
       </div>
 

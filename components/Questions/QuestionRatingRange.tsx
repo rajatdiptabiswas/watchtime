@@ -1,12 +1,12 @@
-interface QuestionYearRangeProps {
+interface QuestionRatingRangeProps {
   pageUp: () => void;
   pageDown: () => void;
 }
 
-export default function QuestionYearRange({
+export default function QuestionRatingRange({
   pageUp,
   pageDown,
-}: QuestionYearRangeProps) {
+}: QuestionRatingRangeProps) {
   return (
     <div className="flex flex-col items-center justify-center mt-16 min-h-container">
       <div className="flex flex-col items-end justify-center pt-2">
