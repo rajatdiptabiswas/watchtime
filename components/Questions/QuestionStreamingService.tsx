@@ -67,7 +67,7 @@ export default function QuestionStreamingService({
 
       <div className="flex flex-col items-center justify-center pb-4 space-y-4">
         <button className="btn-recommendation">get recommendations</button>
-        <div className="text-gray-400 text-center text-sm">
+        <div className="text-gray-400 text-center text-sm invisible">
           or narrow the search down further...
         </div>
       </div>
@@ -75,7 +75,7 @@ export default function QuestionStreamingService({
       <div className="flex flex-col items-end justify-center pb-2">
         <div className="pb-2 w-full text-center">7/7</div>
 
-        <div>
+        <div className="">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-10 w-10 invisible"

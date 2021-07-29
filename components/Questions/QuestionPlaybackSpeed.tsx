@@ -51,13 +51,13 @@ export default function QuestionPlaybackSpeed({
         </div>
       </div>
 
-      <div className="flex flex-col items-center justify-center space-y-10 flex-grow w-full">
+      <div className="flex flex-col items-center justify-center gap-y-2 sm:gap-y-10 flex-grow w-full">
         <div className="flex flex-col items-center justify-center">
           <div className="text-3xl font-bold text-center p-2">
             what playback speed will you use?
           </div>
 
-          <div className="flex p-4 md:px-10">
+          <div className="flex p-4">
             <Counter
               name={'times'}
               min={0.5}

@@ -52,7 +52,7 @@ export default function QuestionTimeAvailable({
           how long do you have?
         </div>
 
-        <div className="flex space-x-8 p-4 md:px-10">
+        <div className="flex flex-wrap gap-x-6 gap-y-2 p-4 md:px-10 justify-center align-center">
           <Counter
             name={'hrs'}
             min={0}
