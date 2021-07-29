@@ -1,10 +1,18 @@
-import Link from 'next/link';
+interface QuestionContentTypeProps {
+  contentType: { movies: boolean; tv: boolean };
+  updateContentType: (type: 'movies' | 'tv') => void;
+  pageDown: () => void;
+}
 
-export default function QuestionContentType() {
+export default function QuestionContentType({
+  contentType,
+  updateContentType,
+  pageDown,
+}: QuestionContentTypeProps) {
   return (
     <div className="flex flex-col items-center justify-center mt-16 min-h-container">
       <div className="invisible flex flex-col items-end justify-center pt-2">
-        <Link href="/questions/1">
+        <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-10 w-10"
@@ -19,7 +27,7 @@ export default function QuestionContentType() {
               d="M5 15l7-7 7 7"
             />
           </svg>
-        </Link>
+        </div>
       </div>
 
       <div className="flex flex-col items-center justify-center flex-grow w-full">
@@ -28,11 +36,29 @@ export default function QuestionContentType() {
         </div>
 
         <div className="flex sm:text-lg whitespace-nowrap overflow-x-scroll space-x-4 sm:space-x-6 p-4 md:px-10 max-w-full scrollbar-hide">
-          <div className="bg-gray-800 rounded shadow-md px-4 py-2 cursor-pointer">
+          <div
+            className={
+              'btn-toggle ' +
+              (contentType.movies
+                ? 'btn-toggle-selected'
+                : 'btn-toggle-unselected')
+            }
+            onClick={() => {
+              updateContentType('movies');
+            }}
+          >
             movies
           </div>
 
-          <div className="bg-gray-800 rounded shadow-md px-4 py-2 cursor-pointer">
+          <div
+            className={
+              'btn-toggle ' +
+              (contentType.tv ? 'btn-toggle-selected' : 'btn-toggle-unselected')
+            }
+            onClick={() => {
+              updateContentType('tv');
+            }}
+          >
             tv
           </div>
         </div>
@@ -41,7 +67,7 @@ export default function QuestionContentType() {
       <div className="flex flex-col items-end justify-center pb-2">
         <div className="pb-2 w-full text-center">1/7</div>
 
-        <Link href="/questions/2">
+        <div onClick={pageDown}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-10 w-10"
@@ -56,7 +82,7 @@ export default function QuestionContentType() {
               d="M19 9l-7 7-7-7"
             />
           </svg>
-        </Link>
+        </div>
       </div>
     </div>
   );

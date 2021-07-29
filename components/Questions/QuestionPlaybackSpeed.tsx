@@ -1,10 +1,16 @@
-import Link from 'next/link';
+interface QuestionPlaybackSpeedProps {
+  pageUp: () => void;
+  pageDown: () => void;
+}
 
-export default function QuestionPlaybackSpeed() {
+export default function QuestionPlaybackSpeed({
+  pageUp,
+  pageDown,
+}: QuestionPlaybackSpeedProps) {
   return (
     <div className="flex flex-col items-center justify-center mt-16 min-h-container">
       <div className="flex flex-col items-end justify-center pt-2">
-        <Link href="/questions/2">
+        <div onClick={pageUp}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-10 w-10"
@@ -19,7 +25,7 @@ export default function QuestionPlaybackSpeed() {
               d="M5 15l7-7 7 7"
             />
           </svg>
-        </Link>
+        </div>
       </div>
 
       <div className="flex flex-col items-center justify-center space-y-10 flex-grow w-full">
@@ -44,7 +50,7 @@ export default function QuestionPlaybackSpeed() {
       </div>
 
       <div className="flex flex-col items-center justify-center pb-4 space-y-4">
-        <button className="btn">get recommendations</button>
+        <button className="btn-recommendation">get recommendations</button>
         <div className="text-gray-400 text-center text-sm">
           or narrow the search down further...
         </div>
@@ -53,7 +59,7 @@ export default function QuestionPlaybackSpeed() {
       <div className="flex flex-col items-end justify-center pb-2">
         <div className="pb-2 w-full text-center">3/7</div>
 
-        <Link href="/questions/4">
+        <div onClick={pageDown}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-10 w-10"
@@ -68,7 +74,7 @@ export default function QuestionPlaybackSpeed() {
               d="M19 9l-7 7-7-7"
             />
           </svg>
-        </Link>
+        </div>
       </div>
     </div>
   );

@@ -1,10 +1,16 @@
-import Link from 'next/link';
+interface QuestionYearRangeProps {
+  pageUp: () => void;
+  pageDown: () => void;
+}
 
-export default function QuestionYearRange() {
+export default function QuestionYearRange({
+  pageUp,
+  pageDown,
+}: QuestionYearRangeProps) {
   return (
     <div className="flex flex-col items-center justify-center mt-16 min-h-container">
       <div className="flex flex-col items-end justify-center pt-2">
-        <Link href="/questions/4">
+        <div onClick={pageUp}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-10 w-10"
@@ -19,7 +25,7 @@ export default function QuestionYearRange() {
               d="M5 15l7-7 7 7"
             />
           </svg>
-        </Link>
+        </div>
       </div>
 
       <div className="flex flex-col items-center justify-center flex-grow w-full">
@@ -37,7 +43,7 @@ export default function QuestionYearRange() {
       </div>
 
       <div className="flex flex-col items-center justify-center pb-4 space-y-4">
-        <button className="btn">get recommendations</button>
+        <button className="btn-recommendation">get recommendations</button>
         <div className="text-gray-400 text-center text-sm">
           or narrow the search down further...
         </div>
@@ -46,7 +52,7 @@ export default function QuestionYearRange() {
       <div className="flex flex-col items-end justify-center pb-2">
         <div className="pb-2 w-full text-center">5/7</div>
 
-        <Link href="/questions/6">
+        <div onClick={pageDown}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-10 w-10"
@@ -61,7 +67,7 @@ export default function QuestionYearRange() {
               d="M19 9l-7 7-7-7"
             />
           </svg>
-        </Link>
+        </div>
       </div>
     </div>
   );

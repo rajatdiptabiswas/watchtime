@@ -1,10 +1,14 @@
-import Link from 'next/link';
+interface QuestionStreamingServiceProps {
+  pageUp: () => void;
+}
 
-export default function QuestionGenre() {
+export default function QuestionStreamingService({
+  pageUp,
+}: QuestionStreamingServiceProps) {
   return (
     <div className="flex flex-col items-center justify-center mt-16 min-h-container">
       <div className="flex flex-col items-end justify-center pt-2">
-        <Link href="/questions/6">
+        <div onClick={pageUp}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-10 w-10"
@@ -19,7 +23,7 @@ export default function QuestionGenre() {
               d="M5 15l7-7 7 7"
             />
           </svg>
-        </Link>
+        </div>
       </div>
 
       <div className="flex flex-col items-center justify-center flex-grow w-full space-y-4">
@@ -62,7 +66,7 @@ export default function QuestionGenre() {
       </div>
 
       <div className="flex flex-col items-center justify-center pb-4 space-y-4">
-        <button className="btn">get recommendations</button>
+        <button className="btn-recommendation">get recommendations</button>
         <div className="text-gray-400 text-center text-sm">
           or narrow the search down further...
         </div>
@@ -71,20 +75,22 @@ export default function QuestionGenre() {
       <div className="flex flex-col items-end justify-center pb-2">
         <div className="pb-2 w-full text-center">7/7</div>
 
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-10 w-10 invisible"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
+        <div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-10 w-10 invisible"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </div>
       </div>
     </div>
   );

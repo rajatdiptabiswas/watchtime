@@ -1,0 +1,86 @@
+import { useState } from 'react';
+import Layout from '../components/Layout';
+import QuestionContentType from '../components/Questions/QuestionContentType';
+import QuestionTimeAvailable from '../components/Questions/QuestionTimeAvailable';
+import QuestionPlaybackSpeed from '../components/Questions/QuestionPlaybackSpeed';
+import QuestionGenre from '../components/Questions/QuestionGenre';
+import QuestionYearRange from '../components/Questions/QuestionYearRange';
+import QuestionRatingRange from '../components/Questions/QuestionRatingRange';
+import QuestionStreamingService from '../components/Questions/QuestionStreamingService';
+
+export default function questions() {
+  const [page, setPage] = useState(1);
+  const [contentType, setContentType] = useState({ movies: false, tv: false });
+  const [timeAvailable, setTimeAvailable] = useState(1 * 60);
+  const [playbackSpeed, setPlaybackSpeed] = useState(1.0);
+  const [genre, setGenre] = useState({
+    // TODO: need to use genre codes
+    crime: false,
+    comedy: false,
+  });
+  const [yearRange, setYearRange] = useState<{
+    start: number;
+    end: number;
+  } | null>(null);
+  const [ratingRange, setRatingRange] = useState<{
+    start: number;
+    end: number;
+  } | null>(null);
+  const [streamingRegion, setStreamingRegion] = useState(null);
+  const [streamingService, setStreamingService] = useState(null);
+
+  const pageUp = (): void => {
+    const nextPage: number = page - 1;
+    if (!(1 <= nextPage && nextPage <= 7)) {
+      return;
+    }
+    setPage(nextPage);
+  };
+
+  const pageDown = (): void => {
+    const nextPage: number = page + 1;
+    if (!(1 <= nextPage && nextPage <= 7)) {
+      return;
+    }
+    setPage(nextPage);
+  };
+
+  const updateContentType = (type: 'movies' | 'tv'): void => {
+    const updatedContentType = { ...contentType };
+    updatedContentType[type] = !contentType[type];
+    setContentType(updatedContentType);
+  };
+
+  const questionPage = () => {
+    switch (page) {
+      case 1:
+        return (
+          <QuestionContentType
+            contentType={contentType}
+            updateContentType={updateContentType}
+            pageDown={pageDown}
+          />
+        );
+      case 2:
+        return <QuestionTimeAvailable pageUp={pageUp} pageDown={pageDown} />;
+      case 3:
+        return <QuestionPlaybackSpeed pageUp={pageUp} pageDown={pageDown} />;
+      case 4:
+        return <QuestionGenre pageUp={pageUp} pageDown={pageDown} />;
+      case 5:
+        return <QuestionYearRange pageUp={pageUp} pageDown={pageDown} />;
+      case 6:
+        return <QuestionRatingRange pageUp={pageUp} pageDown={pageDown} />;
+      case 7:
+        return <QuestionStreamingService pageUp={pageUp} />;
+      default:
+        return (
+          <div className="flex items-center justify-center mt-16 min-h-container text-xl">
+            404
+          </div>
+        );
+    }
+  };
+
+  return <Layout>{questionPage()}</Layout>;
+}

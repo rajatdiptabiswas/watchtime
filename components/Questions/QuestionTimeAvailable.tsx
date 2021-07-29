@@ -1,10 +1,16 @@
-import Link from 'next/link';
+interface QuestionTimeAvailableProps {
+  pageUp: () => void;
+  pageDown: () => void;
+}
 
-export default function QuestionTimeAvailable() {
+export default function QuestionTimeAvailable({
+  pageUp,
+  pageDown,
+}: QuestionTimeAvailableProps) {
   return (
     <div className="flex flex-col items-center justify-center mt-16 min-h-container">
       <div className="flex flex-col items-end justify-center pt-2">
-        <Link href="/questions/1">
+        <div onClick={pageUp}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-10 w-10"
@@ -19,7 +25,7 @@ export default function QuestionTimeAvailable() {
               d="M5 15l7-7 7 7"
             />
           </svg>
-        </Link>
+        </div>
       </div>
 
       <div className="flex flex-col items-center justify-center flex-grow w-full">
@@ -37,7 +43,7 @@ export default function QuestionTimeAvailable() {
       <div className="flex flex-col items-end justify-center pb-2">
         <div className="pb-2 w-full text-center">2/7</div>
 
-        <Link href="/questions/3">
+        <div onClick={pageDown}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-10 w-10"
@@ -52,7 +58,7 @@ export default function QuestionTimeAvailable() {
               d="M19 9l-7 7-7-7"
             />
           </svg>
-        </Link>
+        </div>
       </div>
     </div>
   );
