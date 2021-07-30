@@ -49,7 +49,10 @@ export default function questions() {
 
   const updateContentType = (type: 'movies' | 'tv'): void => {
     const updatedContentType = { ...contentType };
-    updatedContentType[type] = !contentType[type];
+    updatedContentType['movies'] = false;
+    updatedContentType['tv'] = false;
+    updatedContentType[type] = true;
+
     setContentType(updatedContentType);
   };
 
