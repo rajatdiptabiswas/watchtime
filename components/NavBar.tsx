@@ -56,7 +56,7 @@ export default function NavBar() {
         {/* navigation menu options */}
         <div className="hidden sm:flex px-4 space-x-4">
           <div className="flex items-end">
-            <Link href="/questions/1">home</Link>
+            <Link href="/questions">home</Link>
           </div>
           <div className="flex items-end">
             <Link href="/search">search</Link>
@@ -146,7 +146,7 @@ export default function NavBar() {
         }
       >
         <div>
-          <Link href="/questions/1">home</Link>
+          <Link href="/questions">home</Link>
         </div>
         <div>
           <Link href="/search">search</Link>

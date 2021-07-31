@@ -1,8 +1,8 @@
 import ToggleButton from '../ToggleButton';
 
 interface QuestionContentTypeProps {
-  contentType: { movies: boolean; tv: boolean };
-  updateContentType: (type: 'movies' | 'tv') => void;
+  contentType: { movie: boolean; tv: boolean };
+  updateContentType: (type: 'movie' | 'tv') => void;
   pageDown: () => void;
 }
 
@@ -40,8 +40,8 @@ export default function QuestionContentType({
         <div className="flex sm:text-lg whitespace-nowrap overflow-x-scroll space-x-4 sm:space-x-6 p-4 md:px-10 max-w-full scrollbar-hide">
           <ToggleButton
             name={'movies'}
-            isSelected={contentType.movies}
-            onButtonClick={() => updateContentType('movies')}
+            isSelected={contentType.movie}
+            onButtonClick={() => updateContentType('movie')}
           />
 
           <ToggleButton

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
 import QuestionContentType from '../components/Questions/QuestionContentType';
 import QuestionTimeAvailable from '../components/Questions/QuestionTimeAvailable';
@@ -9,8 +10,10 @@ import QuestionRatingRange from '../components/Questions/QuestionRatingRange';
 import QuestionStreamingService from '../components/Questions/QuestionStreamingService';
 
 export default function questions() {
+  const router = useRouter();
+
   const [page, setPage] = useState(1);
-  const [contentType, setContentType] = useState({ movies: true, tv: false });
+  const [contentType, setContentType] = useState({ movie: true, tv: false });
   const [timeAvailable, setTimeAvailable] = useState(1 * 60);
   const [playbackSpeed, setPlaybackSpeed] = useState(1.0);
   const [genre, setGenre] = useState({
@@ -47,10 +50,10 @@ export default function questions() {
     setPage(nextPage);
   };
 
-  const updateContentType = (type: 'movies' | 'tv'): void => {
+  const updateContentType = (type: 'movie' | 'tv'): void => {
     const updatedContentType = { ...contentType };
-    updatedContentType['movies'] = false;
-    updatedContentType['tv'] = false;
+    updatedContentType.movie = false;
+    updatedContentType.tv = false;
     updatedContentType[type] = true;
 
     setContentType(updatedContentType);
@@ -62,6 +65,19 @@ export default function questions() {
 
   const updatePlaybackSpeed = (speed: number): void => {
     setPlaybackSpeed(speed);
+  };
+
+  const getRecommendations = () => {
+    const href = '/recommendations';
+
+    let query = '';
+    query += `?content=${
+      contentType.movie ? 'movie' : contentType.tv ? 'tv' : ''
+    }`;
+    query += `&time=${(timeAvailable / playbackSpeed).toFixed(0)}`;
+
+    const url = href + query;
+    router.push(url);
   };
 
   const questionPage = () => {
@@ -91,6 +107,7 @@ export default function questions() {
             timeAvailable={timeAvailable}
             pageUp={pageUp}
             pageDown={pageDown}
+            getRecommendations={getRecommendations}
           />
         );
       case 4:

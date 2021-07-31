@@ -7,6 +7,7 @@ interface QuestionPlaybackSpeedProps {
   timeAvailable: number;
   pageUp: () => void;
   pageDown: () => void;
+  getRecommendations: () => void;
 }
 
 export default function QuestionPlaybackSpeed({
@@ -15,6 +16,7 @@ export default function QuestionPlaybackSpeed({
   timeAvailable,
   pageUp,
   pageDown,
+  getRecommendations,
 }: QuestionPlaybackSpeedProps) {
   let currentTime = timeAvailable / playbackSpeed;
   let hours = Math.floor(currentTime / 60);
@@ -82,7 +84,9 @@ export default function QuestionPlaybackSpeed({
       </div>
 
       <div className="flex flex-col items-center justify-center pb-4 space-y-4">
-        <button className="btn-recommendation">get recommendations</button>
+        <button className="btn-recommendation" onClick={getRecommendations}>
+          get recommendations
+        </button>
         <div className="text-gray-400 text-center text-sm">
           or narrow the search down further...
         </div>
