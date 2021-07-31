@@ -40,9 +40,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   let url = 'https://api.themoviedb.org/3/discover/movie';
   url += `?api_key=${process.env.TMDB_API_KEY}`;
-  url += `&with_original_language=en`;
   url += `&include_adult=false`;
+  url += `&region=US`;
+  url += `&with_original_language=en`;
   url += `&sort_by=popularity.desc`;
+  url += time && `&with_runtime.gte=${(+time * 0.75).toFixed(0)}`;
   url += time && `&with_runtime.lte=${time}`;
 
   const response = await fetch(url);
