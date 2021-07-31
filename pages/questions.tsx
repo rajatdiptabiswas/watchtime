@@ -68,16 +68,13 @@ export default function questions() {
   };
 
   const getRecommendations = () => {
-    const href = '/recommendations';
+    let url = '/recommendations';
+    url += `/${contentType.movie ? 'movie' : contentType.tv ? 'tv' : 'error'}`;
 
     let query = '';
-    query += `?content=${
-      contentType.movie ? 'movie' : contentType.tv ? 'tv' : ''
-    }`;
-    query += `&time=${(timeAvailable / playbackSpeed).toFixed(0)}`;
+    query += `?time=${(timeAvailable / playbackSpeed).toFixed(0)}`;
 
-    const url = href + query;
-    router.push(url);
+    router.push(url + query);
   };
 
   const questionPage = () => {

@@ -10,7 +10,7 @@ export default function NavBar() {
 
   return (
     // TODO: check if all the tailwind classes are necessary
-    <nav className="inset-x-0 top-0 p-4 sm:px-8 h-16 bg-gray-900 shadow-lg fixed">
+    <nav className="inset-x-0 top-0 p-4 sm:px-8 h-16 bg-gray-900 shadow-lg fixed z-10">
       <div className="flex">
         {/* logo */}
         <div className="flex space-x-2">
@@ -142,7 +142,7 @@ export default function NavBar() {
       <div
         className={
           (menuOpen ? 'flex flex-col' : 'hidden') +
-          ' sm:hidden text-right p-4 px-6 -m-4 mt-5 space-y-4'
+          ' sm:hidden text-center p-4 px-6 -m-4 mt-5 space-y-4 bg-gray-800'
         }
       >
         <div>

@@ -1,6 +1,6 @@
 import Image, { ImageLoader, ImageLoaderProps } from 'next/image';
 
-interface MovieCardProps {
+interface TVCardProps {
   id: number;
   title: string;
   year: string;
@@ -29,11 +29,11 @@ export default function MovieCard({
   rating,
   // overview,
   posterPath,
-}: MovieCardProps) {
+}: TVCardProps) {
   return (
     <div
       className="min-w-min bg-gray-800 rounded overflow-hidden shadow-lg cursor-pointer"
-      onClick={() => openInNewTab(`https://www.themoviedb.org/movie/${id}`)}
+      onClick={() => openInNewTab(`https://www.themoviedb.org/tv/${id}`)}
     >
       <div className="h-72 relative">
         {posterPath ? (
