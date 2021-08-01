@@ -11,6 +11,7 @@ export default function MovieRecommendations({
         key={result.id}
         id={result.id}
         title={result.original_title}
+        // TODO: fix placeholder year
         year={result.release_date?.split('-')[0] || '20XX'}
         // overview={result.overview}
         rating={result.vote_average}
@@ -44,8 +45,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   url += `&region=US`;
   url += `&with_original_language=en`;
   url += `&sort_by=popularity.desc`;
-  url += time && `&with_runtime.gte=${(+time * 0.75).toFixed(0)}`;
-  url += time && `&with_runtime.lte=${time}`;
+  url += time ? `&with_runtime.gte=${(+time * 0.75).toFixed(0)}` : ``;
+  url += time ? `&with_runtime.lte=${time}` : ``;
+
+  console.log(url);
 
   const response = await fetch(url);
   const data = await response.json();
