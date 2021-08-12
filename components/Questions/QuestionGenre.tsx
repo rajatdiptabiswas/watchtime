@@ -1,11 +1,22 @@
+import GenreList from '../../data/GenreCodes';
+import ToggleButton from '../ToggleButton';
+
 interface QuestionGenreProps {
+  contentType: 'movie' | 'tv';
+  genresState: { [genre: string]: boolean };
+  updateGenres: (genre: string) => void;
   pageUp: () => void;
   pageDown: () => void;
+  getRecommendations: () => void;
 }
 
 export default function QuestionGenre({
+  contentType,
+  genresState,
+  updateGenres,
   pageUp,
   pageDown,
+  getRecommendations,
 }: QuestionGenreProps) {
   return (
     <div className="flex flex-col items-center justify-center mt-16 min-h-container">
@@ -35,38 +46,21 @@ export default function QuestionGenre({
         </div>
 
         <div className="flex sm:text-lg whitespace-nowrap overflow-x-scroll space-x-4 sm:space-x-6 p-4 md:px-10 max-w-full scrollbar-hide">
-          <div className="bg-gray-800 rounded shadow-md px-4 py-2 cursor-pointer">
-            crime
-          </div>
-
-          <div className="bg-gray-800 rounded shadow-md px-4 py-2 cursor-pointer">
-            comedy
-          </div>
-
-          <div className="bg-gray-800 rounded shadow-md px-4 py-2 cursor-pointer">
-            mystery
-          </div>
-
-          <div className="bg-gray-800 rounded shadow-md px-4 py-2 cursor-pointer">
-            drama
-          </div>
-
-          <div className="bg-gray-800 rounded shadow-md px-4 py-2 cursor-pointer">
-            horror
-          </div>
-
-          <div className="bg-gray-800 rounded shadow-md px-4 py-2 cursor-pointer">
-            sci-fi
-          </div>
-
-          <div className="bg-gray-800 rounded shadow-md px-4 py-2 cursor-pointer">
-            thriller
-          </div>
+          {Object.keys(GenreList[contentType]).map((genre, index) => (
+            <ToggleButton
+              key={index}
+              name={genre}
+              isSelected={genresState[genre]}
+              onButtonClick={() => updateGenres(genre)}
+            />
+          ))}
         </div>
       </div>
 
       <div className="flex flex-col items-center justify-center pb-4 space-y-4">
-        <button className="btn-recommendation">get recommendations</button>
+        <button className="btn-recommendation" onClick={getRecommendations}>
+          get recommendations
+        </button>
         <div className="text-gray-400 text-center text-sm">
           or narrow the search down further...
         </div>

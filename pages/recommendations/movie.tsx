@@ -37,7 +37,7 @@ export default function MovieRecommendations({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context;
-  const { time } = query;
+  const { time, genres } = query;
 
   let url = 'https://api.themoviedb.org/3/discover/movie';
   url += `?api_key=${process.env.TMDB_API_KEY}`;
@@ -47,7 +47,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   url += `&sort_by=popularity.desc`;
   url += time ? `&with_runtime.gte=${(+time * 0.75).toFixed(0)}` : ``;
   url += time ? `&with_runtime.lte=${time}` : ``;
+  url += genres ? `&with_genres=${genres}` : ``;
 
+  // TODO: remove debug statement
   console.log(url);
 
   const response = await fetch(url);

@@ -37,7 +37,10 @@ export default function tvRecommendations({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context;
-  const { time } = query;
+  const { time, genres } = query;
+
+  const genreCodeNews = 10763;
+  const genreCodeTalk = 10767;
 
   let url = 'https://api.themoviedb.org/3/discover/tv';
   url += `?api_key=${process.env.TMDB_API_KEY}`;
@@ -45,6 +48,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   url += `&sort_by=popularity.desc`;
   url += time ? `&with_runtime.gte=${(+time * 0.75).toFixed(0)}` : ``;
   url += time ? `&with_runtime.lte=${time}` : ``;
+  url += genres ? `&with_genres=${genres}` : ``;
+  url += `&without_genres=${genreCodeNews}|${genreCodeTalk}`;
+
+  // TODO: remove debug statement
+  console.log(url);
 
   const response = await fetch(url);
   const data = await response.json();
