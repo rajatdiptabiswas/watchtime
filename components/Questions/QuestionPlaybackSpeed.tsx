@@ -63,7 +63,7 @@ export default function QuestionPlaybackSpeed({
             <Counter
               name={'times'}
               min={0.5}
-              max={3.0}
+              max={5.0}
               step={0.25}
               value={playbackSpeed}
               decimalPlaces={2}
