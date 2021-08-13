@@ -37,7 +37,7 @@ export default function tvRecommendations({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context;
-  const { time, genres } = query;
+  const { time, genres, yearStart, yearEnd } = query;
 
   const genreCodeNews = 10763;
   const genreCodeTalk = 10767;
@@ -50,6 +50,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   url += time ? `&with_runtime.lte=${time}` : ``;
   url += genres ? `&with_genres=${genres}` : ``;
   url += `&without_genres=${genreCodeNews}|${genreCodeTalk}`;
+  url += yearStart
+    ? `&first_air_date.gte=${yearStart}-01-01T00:00:00.000Z`
+    : ``;
+  url += yearEnd ? `&first_air_date.lte=${yearEnd}-12-31T00:00:00.000Z` : ``;
 
   // TODO: remove debug statement
   console.log(url);

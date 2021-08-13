@@ -37,7 +37,7 @@ export default function MovieRecommendations({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context;
-  const { time, genres } = query;
+  const { time, genres, yearStart, yearEnd } = query;
 
   let url = 'https://api.themoviedb.org/3/discover/movie';
   url += `?api_key=${process.env.TMDB_API_KEY}`;
@@ -48,6 +48,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   url += time ? `&with_runtime.gte=${(+time * 0.75).toFixed(0)}` : ``;
   url += time ? `&with_runtime.lte=${time}` : ``;
   url += genres ? `&with_genres=${genres}` : ``;
+  url += yearStart
+    ? `&primary_release_date.gte=${yearStart}-01-01T00:00:00.000Z`
+    : ``;
+  url += yearEnd
+    ? `&primary_release_date.lte=${yearEnd}-12-31T00:00:00.000Z`
+    : ``;
 
   // TODO: remove debug statement
   console.log(url);

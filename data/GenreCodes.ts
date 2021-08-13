@@ -1,5 +1,5 @@
 type GenreCodesType = {
-  [key: string]: {
+  [contentType: string]: {
     [genre: string]: number;
   };
 };

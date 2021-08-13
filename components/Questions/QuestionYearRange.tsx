@@ -1,12 +1,35 @@
+import SelectDropdown from '../SelectDropdown';
+
 interface QuestionYearRangeProps {
+  yearRangeState: { start: number; end: number };
+  updateYearRange: (type: 'start' | 'end', year: number) => void;
   pageUp: () => void;
   pageDown: () => void;
+  getRecommendations: () => void;
 }
 
 export default function QuestionYearRange({
+  yearRangeState,
+  updateYearRange,
   pageUp,
   pageDown,
+  getRecommendations,
 }: QuestionYearRangeProps) {
+  const numberRange = (
+    start: number,
+    end: number,
+    step: number = 1
+  ): number[] => {
+    let output: number[] = [];
+    for (let i = start; i <= end; i += step) {
+      output.push(i);
+    }
+    return output;
+  };
+
+  const yearStartLimit = 1900;
+  const yearEndLimit = new Date().getFullYear();
+
   return (
     <div className="flex flex-col items-center justify-center mt-16 min-h-container">
       <div className="flex flex-col items-end justify-center pt-2">
@@ -34,16 +57,28 @@ export default function QuestionYearRange({
         </div>
 
         <div className="flex whitespace-nowrap overflow-x-scroll space-x-4 p-4 md:px-10 max-w-full scrollbar-hide">
-          <div className="border-gray-100 border-2 rounded px-4 py-2">
-            begin
-          </div>
-
-          <div className="border-gray-100 border-2 rounded px-4 py-2">end</div>
+          <SelectDropdown
+            options={numberRange(yearStartLimit, yearRangeState.end)}
+            selectedOption={yearRangeState.start}
+            updateSelectedOption={(option: number) =>
+              updateYearRange('start', option)
+            }
+          />
+          <div className="flex items-center justify-center px-2">to</div>
+          <SelectDropdown
+            options={numberRange(yearRangeState.start, yearEndLimit)}
+            selectedOption={yearRangeState.end}
+            updateSelectedOption={(option: number) =>
+              updateYearRange('end', option)
+            }
+          />
         </div>
       </div>
 
       <div className="flex flex-col items-center justify-center pb-4 space-y-4">
-        <button className="btn-recommendation">get recommendations</button>
+        <button className="btn-recommendation" onClick={getRecommendations}>
+          get recommendations
+        </button>
         <div className="text-gray-400 text-center text-sm">
           or narrow the search down further...
         </div>

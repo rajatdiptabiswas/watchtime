@@ -28,11 +28,6 @@ export default function questions() {
     return genresState;
   };
 
-  type RangeType = {
-    start: number;
-    end: number;
-  };
-
   // states
   const [page, setPage] = useState(1);
   const [contentType, setContentType] = useState({ movie: true, tv: false });
@@ -41,8 +36,11 @@ export default function questions() {
   const [genres, setGenres] = useState(
     getInitialGenreState(contentType.movie ? 'movie' : 'tv')
   );
-  const [yearRange, setYearRange] = useState<RangeType | null>(null);
-  const [ratingRange, setRatingRange] = useState<RangeType | null>(null);
+  const [yearRange, setYearRange] = useState({
+    start: 1900,
+    end: new Date().getFullYear(),
+  });
+  const [ratingRange, setRatingRange] = useState(null);
   const [streamingRegion, setStreamingRegion] = useState(null);
   const [streamingService, setStreamingService] = useState(null);
 
@@ -91,6 +89,17 @@ export default function questions() {
     setGenres(updatedGenres);
   };
 
+  const updateYearRange = (type: 'start' | 'end', year: number): void => {
+    const updatedYearRange = { ...yearRange };
+    updatedYearRange[type] = +year;
+
+    if (updatedYearRange.start > updatedYearRange.end) {
+      return;
+    }
+
+    setYearRange(updatedYearRange);
+  };
+
   const getRecommendations = () => {
     let url = '/recommendations';
     url += `/${contentType.movie ? 'movie' : 'tv'}`;
@@ -108,6 +117,15 @@ export default function questions() {
       }
     }
     query += `&genres=${Array.from(genreCodes).join('|')}`;
+
+    // year range
+    if (
+      yearRange.start !== 1900 ||
+      yearRange.end !== new Date().getFullYear()
+    ) {
+      query += `&yearStart=${yearRange.start}`;
+      query += `&yearEnd=${yearRange.end}`;
+    }
 
     router.push(url + query);
   };
@@ -154,7 +172,15 @@ export default function questions() {
           />
         );
       case 5:
-        return <QuestionYearRange pageUp={pageUp} pageDown={pageDown} />;
+        return (
+          <QuestionYearRange
+            yearRangeState={yearRange}
+            updateYearRange={updateYearRange}
+            pageUp={pageUp}
+            pageDown={pageDown}
+            getRecommendations={getRecommendations}
+          />
+        );
       case 6:
         return <QuestionRatingRange pageUp={pageUp} pageDown={pageDown} />;
       case 7:
