@@ -73,7 +73,7 @@ export default function QuestionStreamingService({
       </div>
 
       <div className="flex flex-col items-end justify-center pb-2">
-        <div className="pb-2 w-full text-center">7/7</div>
+        <div className="pb-2 w-full text-center">7 / 7</div>
 
         <div className="">
           <svg

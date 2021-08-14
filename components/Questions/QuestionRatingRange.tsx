@@ -1,12 +1,36 @@
+import SelectDropdown from '../SelectDropdown';
+
 interface QuestionRatingRangeProps {
+  ratingRangeState: { start: number; end: number };
+  updateRatingRange: (type: 'start' | 'end', rating: string) => void;
   pageUp: () => void;
   pageDown: () => void;
+  getRecommendations: () => void;
 }
 
 export default function QuestionRatingRange({
+  ratingRangeState,
+  updateRatingRange,
   pageUp,
   pageDown,
+  getRecommendations,
 }: QuestionRatingRangeProps) {
+  const numberDecimalRange = (
+    start: number,
+    end: number,
+    step: number = 1,
+    decimalPlaces: number = 0
+  ): string[] => {
+    let output: string[] = [];
+    for (let i = start; i <= end; i += step) {
+      output.push(i.toFixed(decimalPlaces));
+    }
+    return output;
+  };
+
+  const ratingStartLimit = 0.0;
+  const ratingEndLimit = 10.0;
+
   return (
     <div className="flex flex-col items-center justify-center mt-16 min-h-container">
       <div className="flex flex-col items-end justify-center pt-2">
@@ -34,23 +58,47 @@ export default function QuestionRatingRange({
         </div>
 
         <div className="flex whitespace-nowrap overflow-x-scroll space-x-4 p-4 md:px-10 max-w-full scrollbar-hide">
-          <div className="border-gray-100 border-2 rounded px-4 py-2">
-            begin
+          <SelectDropdown
+            options={numberDecimalRange(
+              ratingStartLimit,
+              ratingRangeState.end,
+              0.5,
+              1
+            )}
+            selectedOption={ratingRangeState.start.toFixed(1)}
+            updateSelectedOption={(option: string) =>
+              updateRatingRange('start', option)
+            }
+          />
+          <div className="flex items-center justify-center px-2 text-lg">
+            to
           </div>
-
-          <div className="border-gray-100 border-2 rounded px-4 py-2">end</div>
+          <SelectDropdown
+            options={numberDecimalRange(
+              ratingRangeState.start,
+              ratingEndLimit,
+              0.5,
+              1
+            )}
+            selectedOption={ratingRangeState.end.toFixed(1)}
+            updateSelectedOption={(option: string) =>
+              updateRatingRange('end', option)
+            }
+          />
         </div>
       </div>
 
       <div className="flex flex-col items-center justify-center pb-4 space-y-4">
-        <button className="btn-recommendation">get recommendations</button>
+        <button className="btn-recommendation" onClick={getRecommendations}>
+          get recommendations
+        </button>
         <div className="text-gray-400 text-center text-sm">
           or narrow the search down further...
         </div>
       </div>
 
       <div className="flex flex-col items-end justify-center pb-2">
-        <div className="pb-2 w-full text-center">6/7</div>
+        <div className="pb-2 w-full text-center">6 / 7</div>
 
         <div onClick={pageDown}>
           <svg

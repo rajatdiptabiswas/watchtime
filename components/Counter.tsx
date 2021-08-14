@@ -83,7 +83,7 @@ export default function Counter({
               />
             </svg>
           </div>
-          <div className="border-gray-100 border-2 w-20 py-2 text-center text-xl rounded">
+          <div className="border-gray-200 border-2 py-2 w-20 text-center text-xl rounded shadow-md">
             {decimalPlaces ? value.toFixed(decimalPlaces) : value}
           </div>
           <div onClick={increment} className="w-6">

@@ -24,11 +24,15 @@ export default function tvRecommendations({
     <Layout>
       <div className="flex flex-col items-center justify-center mt-16 min-h-container">
         <div className="text-3xl font-bold text-center p-2 mb-4">
-          your recommendations
+          your tv recommendations
         </div>
 
         <div className="flex overflow-x-scroll space-x-6 p-4 px-10 max-w-full scrollbar-hide">
-          {tvCards}
+          {tvCards.length > 0 ? (
+            tvCards
+          ) : (
+            <div className="text-gray-400">no recommendations found :(</div>
+          )}
         </div>
       </div>
     </Layout>
@@ -37,7 +41,7 @@ export default function tvRecommendations({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context;
-  const { time, genres, yearStart, yearEnd } = query;
+  const { time, genres, yearStart, yearEnd, ratingStart, ratingEnd } = query;
 
   const genreCodeNews = 10763;
   const genreCodeTalk = 10767;
@@ -54,6 +58,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     ? `&first_air_date.gte=${yearStart}-01-01T00:00:00.000Z`
     : ``;
   url += yearEnd ? `&first_air_date.lte=${yearEnd}-12-31T00:00:00.000Z` : ``;
+  url += ratingStart ? `&vote_average.gte=${ratingStart}` : ``;
+  url += ratingEnd ? `&vote_average.lte=${ratingEnd}` : ``;
+  url += `&vote_count.gte=250`;
 
   // TODO: remove debug statement
   console.log(url);

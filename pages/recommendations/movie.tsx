@@ -24,11 +24,15 @@ export default function MovieRecommendations({
     <Layout>
       <div className="flex flex-col items-center justify-center mt-16 min-h-container">
         <div className="text-3xl font-bold text-center p-2 mb-4">
-          your recommendations
+          your movie recommendations
         </div>
 
         <div className="flex overflow-x-scroll space-x-6 p-4 px-10 max-w-full scrollbar-hide">
-          {movieCards}
+          {movieCards.length > 0 ? (
+            movieCards
+          ) : (
+            <div className="text-gray-400">no recommendations found :(</div>
+          )}
         </div>
       </div>
     </Layout>
@@ -37,7 +41,7 @@ export default function MovieRecommendations({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context;
-  const { time, genres, yearStart, yearEnd } = query;
+  const { time, genres, yearStart, yearEnd, ratingStart, ratingEnd } = query;
 
   let url = 'https://api.themoviedb.org/3/discover/movie';
   url += `?api_key=${process.env.TMDB_API_KEY}`;
@@ -54,6 +58,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   url += yearEnd
     ? `&primary_release_date.lte=${yearEnd}-12-31T00:00:00.000Z`
     : ``;
+  url += ratingStart ? `&vote_average.gte=${ratingStart}` : ``;
+  url += ratingEnd ? `&vote_average.lte=${ratingEnd}` : ``;
+  url += `&vote_count.gte=250`;
 
   // TODO: remove debug statement
   console.log(url);

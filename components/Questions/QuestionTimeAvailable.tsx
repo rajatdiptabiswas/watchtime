@@ -73,7 +73,7 @@ export default function QuestionTimeAvailable({
       </div>
 
       <div className="flex flex-col items-end justify-center pb-2">
-        <div className="pb-2 w-full text-center">2/7</div>
+        <div className="pb-2 w-full text-center">2 / 7</div>
 
         <div onClick={pageDown}>
           <svg

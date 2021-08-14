@@ -93,7 +93,7 @@ export default function QuestionPlaybackSpeed({
       </div>
 
       <div className="flex flex-col items-end justify-center pb-2">
-        <div className="pb-2 w-full text-center">3/7</div>
+        <div className="pb-2 w-full text-center">3 / 7</div>
 
         <div onClick={pageDown}>
           <svg

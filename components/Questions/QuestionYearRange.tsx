@@ -64,7 +64,9 @@ export default function QuestionYearRange({
               updateYearRange('start', option)
             }
           />
-          <div className="flex items-center justify-center px-2">to</div>
+          <div className="flex items-center justify-center px-2 text-lg">
+            to
+          </div>
           <SelectDropdown
             options={numberRange(yearRangeState.start, yearEndLimit)}
             selectedOption={yearRangeState.end}
@@ -85,7 +87,7 @@ export default function QuestionYearRange({
       </div>
 
       <div className="flex flex-col items-end justify-center pb-2">
-        <div className="pb-2 w-full text-center">5/7</div>
+        <div className="pb-2 w-full text-center">5 / 7</div>
 
         <div onClick={pageDown}>
           <svg

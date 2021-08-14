@@ -40,10 +40,14 @@ export default function questions() {
     start: 1900,
     end: new Date().getFullYear(),
   });
-  const [ratingRange, setRatingRange] = useState(null);
+  const [ratingRange, setRatingRange] = useState({
+    start: 0.0,
+    end: 10.0,
+  });
   const [streamingRegion, setStreamingRegion] = useState(null);
   const [streamingService, setStreamingService] = useState(null);
 
+  // page control
   const pageUp = (): void => {
     const nextPage: number = page - 1;
     if (!(1 <= nextPage && nextPage <= 7)) {
@@ -60,6 +64,7 @@ export default function questions() {
     setPage(nextPage);
   };
 
+  // content type
   const updateContentType = (type: 'movie' | 'tv'): void => {
     const updatedContentType = { ...contentType };
     updatedContentType.movie = false;
@@ -70,6 +75,7 @@ export default function questions() {
     setGenres(getInitialGenreState(type));
   };
 
+  // playback speed
   const updateTimeAvaliable = (time: number): void => {
     setTimeAvailable(time);
   };
@@ -78,6 +84,7 @@ export default function questions() {
     setPlaybackSpeed(speed);
   };
 
+  // genres
   const updateGenres = (genre: string): void => {
     const updatedGenres: {
       [genre: string]: boolean;
@@ -89,6 +96,7 @@ export default function questions() {
     setGenres(updatedGenres);
   };
 
+  // year range
   const updateYearRange = (type: 'start' | 'end', year: number): void => {
     const updatedYearRange = { ...yearRange };
     updatedYearRange[type] = +year;
@@ -98,6 +106,18 @@ export default function questions() {
     }
 
     setYearRange(updatedYearRange);
+  };
+
+  // rating range
+  const updateRatingRange = (type: 'start' | 'end', rating: string): void => {
+    const updatedRatingRange = { ...ratingRange };
+    updatedRatingRange[type] = +rating;
+
+    if (updatedRatingRange.start > updatedRatingRange.end) {
+      return;
+    }
+
+    setRatingRange(updatedRatingRange);
   };
 
   const getRecommendations = () => {
@@ -116,7 +136,8 @@ export default function questions() {
         genreCodes.add(GenreCodes[contentType.movie ? 'movie' : 'tv'][genre]);
       }
     }
-    query += `&genres=${Array.from(genreCodes).join('|')}`;
+    query +=
+      genreCodes.size > 0 ? `&genres=${Array.from(genreCodes).join('|')}` : ``;
 
     // year range
     if (
@@ -125,6 +146,12 @@ export default function questions() {
     ) {
       query += `&yearStart=${yearRange.start}`;
       query += `&yearEnd=${yearRange.end}`;
+    }
+
+    // rating range
+    if (ratingRange.start !== 0.0 || ratingRange.end !== 10.0) {
+      query += `&ratingStart=${ratingRange.start}`;
+      query += `&ratingEnd=${ratingRange.end}`;
     }
 
     router.push(url + query);
@@ -182,7 +209,15 @@ export default function questions() {
           />
         );
       case 6:
-        return <QuestionRatingRange pageUp={pageUp} pageDown={pageDown} />;
+        return (
+          <QuestionRatingRange
+            ratingRangeState={ratingRange}
+            updateRatingRange={updateRatingRange}
+            pageUp={pageUp}
+            pageDown={pageDown}
+            getRecommendations={getRecommendations}
+          />
+        );
       case 7:
         return <QuestionStreamingService pageUp={pageUp} />;
       default:
