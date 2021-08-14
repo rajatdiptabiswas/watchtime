@@ -22,7 +22,7 @@ const openInNewTab = (url: string) => {
   if (newWindow) newWindow.opener = null;
 };
 
-export default function MovieCard({
+export default function TVCard({
   id,
   title,
   year,

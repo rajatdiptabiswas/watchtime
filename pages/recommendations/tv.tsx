@@ -63,7 +63,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   url += `&vote_count.gte=250`;
 
   // TODO: remove debug statement
-  console.log(url);
+  // console.log(url);
 
   const response = await fetch(url);
   const data = await response.json();
