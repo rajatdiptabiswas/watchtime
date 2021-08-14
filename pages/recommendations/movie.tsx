@@ -49,7 +49,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   url += `&region=US`;
   url += `&with_original_language=en`;
   url += `&sort_by=popularity.desc`;
-  url += time ? `&with_runtime.gte=${(+time * 0.75).toFixed(0)}` : ``;
+  url += time ? `&with_runtime.gte=${(+time * 0.25).toFixed(0)}` : ``;
   url += time ? `&with_runtime.lte=${time}` : ``;
   url += genres ? `&with_genres=${genres}` : ``;
   url += yearStart

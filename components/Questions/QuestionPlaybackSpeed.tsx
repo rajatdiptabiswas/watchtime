@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Counter from '../Counter';
 
 interface QuestionPlaybackSpeedProps {
@@ -18,12 +18,12 @@ export default function QuestionPlaybackSpeed({
   pageDown,
   getRecommendations,
 }: QuestionPlaybackSpeedProps) {
-  let currentTime = timeAvailable / playbackSpeed;
+  let currentTime = timeAvailable * playbackSpeed;
   let hours = Math.floor(currentTime / 60);
   let minutes = currentTime % 60;
 
   useEffect(() => {
-    currentTime = timeAvailable / playbackSpeed;
+    currentTime = timeAvailable * playbackSpeed;
     hours = Math.floor(currentTime / 60);
     minutes = currentTime % 60;
   }, [playbackSpeed]);

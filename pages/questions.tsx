@@ -127,7 +127,7 @@ export default function questions() {
     let query = '';
 
     // playback speed
-    query += `?time=${(timeAvailable / playbackSpeed).toFixed(0)}`;
+    query += `?time=${(timeAvailable * playbackSpeed).toFixed(0)}`;
 
     // genres
     let genreCodes = new Set<number>();
