@@ -7,12 +7,15 @@
 * {
   /* outline: 1px dotted gray;
   outline-offset: -1px; */
+
+  @apply focus:outline-none;
+  @apply focus:ring-2 focus:ring-opacity-50 focus:ring-blue-400;
 }
 
 @layer base {
   body {
     @apply bg-gray-900;
-    @apply text-gray-50;
+    @apply text-gray-100;
     @apply select-none;
   }
 }
@@ -32,6 +35,14 @@
 
   .btn-recommendation {
     @apply bg-gray-800 rounded shadow-md text-center px-6 py-2 w-max;
+  }
+
+  .btn-page-nav {
+    @apply rounded-full;
+  }
+
+  .title {
+    @apply text-3xl md:text-4xl font-bold text-center p-2;
   }
 }
 

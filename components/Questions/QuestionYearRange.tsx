@@ -33,7 +33,7 @@ export default function QuestionYearRange({
   return (
     <div className="flex flex-col items-center justify-center mt-16 min-h-container">
       <div className="flex flex-col items-end justify-center pt-2">
-        <div onClick={pageUp}>
+        <button className="btn-page-nav" onClick={pageUp}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-10 w-10"
@@ -48,13 +48,11 @@ export default function QuestionYearRange({
               d="M5 15l7-7 7 7"
             />
           </svg>
-        </div>
+        </button>
       </div>
 
       <div className="flex flex-col items-center justify-center flex-grow w-full">
-        <div className="text-3xl font-bold text-center p-2">
-          which years do you want to watch from?
-        </div>
+        <div className="title">which years do you want to watch from?</div>
 
         <div className="flex whitespace-nowrap overflow-x-scroll space-x-4 p-4 md:px-10 max-w-full scrollbar-hide">
           <SelectDropdown
@@ -89,7 +87,7 @@ export default function QuestionYearRange({
       <div className="flex flex-col items-end justify-center pb-2">
         <div className="pb-2 w-full text-center">5 / 7</div>
 
-        <div onClick={pageDown}>
+        <button className="btn-page-nav" onClick={pageDown}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-10 w-10"
@@ -104,7 +102,7 @@ export default function QuestionYearRange({
               d="M19 9l-7 7-7-7"
             />
           </svg>
-        </div>
+        </button>
       </div>
     </div>
   );

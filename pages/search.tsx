@@ -62,9 +62,7 @@ export default function search({
     <Layout>
       <div className="flex flex-col items-center justify-center min-h-screen">
         <div className="flex sm:text-lg whitespace-nowrap overflow-x-scroll space-x-4 sm:space-x-6 p-4 md:px-10 max-w-full scrollbar-hide">
-          <div className="text-3xl font-bold flex items-center justify-center">
-            search
-          </div>
+          <div className="title flex items-center justify-center">search</div>
           <ToggleButton
             name={'movies'}
             isSelected={contentTypeState === 'movie'}
@@ -84,7 +82,7 @@ export default function search({
           />
         </div>
         <input
-          className="text-center text-xl bg-transparent border-gray-200 border-2 rounded-full p-2 my-4 w-3/4 md:w-1/2 shadow-md focus:outline-none focus:ring-4 focus:ring-gray-600"
+          className="text-center text-xl bg-transparent border-gray-200 border-2 rounded-full p-2 my-4 w-3/4 md:w-1/2 shadow-md focus:ring-4"
           placeholder="search bar"
           onChange={(event) => {
             const query = event.target.value;

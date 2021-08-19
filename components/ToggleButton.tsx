@@ -10,7 +10,7 @@ export default function ToggleButton({
   onButtonClick,
 }: ToggleButtonProps) {
   return (
-    <div
+    <button
       className={
         'btn-toggle ' +
         (isSelected ? 'btn-toggle-selected' : 'btn-toggle-unselected')
@@ -18,6 +18,6 @@ export default function ToggleButton({
       onClick={onButtonClick}
     >
       {name || 'button'}
-    </div>
+    </button>
   );
 }

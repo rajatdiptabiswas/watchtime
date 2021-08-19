@@ -29,7 +29,7 @@ export default function QuestionTimeAvailable({
   return (
     <div className="flex flex-col items-center justify-center mt-16 min-h-container">
       <div className="flex flex-col items-end justify-center pt-2">
-        <div onClick={pageUp}>
+        <button className="btn-page-nav" onClick={pageUp}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-10 w-10"
@@ -44,13 +44,11 @@ export default function QuestionTimeAvailable({
               d="M5 15l7-7 7 7"
             />
           </svg>
-        </div>
+        </button>
       </div>
 
       <div className="flex flex-col items-center justify-center flex-grow w-full">
-        <div className="text-3xl font-bold text-center p-2">
-          how long do you have?
-        </div>
+        <div className="title">how long do you have?</div>
 
         <div className="flex flex-wrap gap-x-6 gap-y-2 p-4 md:px-10 justify-center align-center">
           <Counter
@@ -75,7 +73,7 @@ export default function QuestionTimeAvailable({
       <div className="flex flex-col items-end justify-center pb-2">
         <div className="pb-2 w-full text-center">2 / 7</div>
 
-        <div onClick={pageDown}>
+        <button className="btn-page-nav" onClick={pageDown}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-10 w-10"
@@ -90,7 +88,7 @@ export default function QuestionTimeAvailable({
               d="M19 9l-7 7-7-7"
             />
           </svg>
-        </div>
+        </button>
       </div>
     </div>
   );

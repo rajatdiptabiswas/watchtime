@@ -14,7 +14,7 @@ export default function QuestionContentType({
   return (
     <div className="flex flex-col items-center justify-center mt-16 min-h-container">
       <div className="invisible flex flex-col items-end justify-center pt-2">
-        <div>
+        <button className="btn-page-nav">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-10 w-10"
@@ -29,13 +29,11 @@ export default function QuestionContentType({
               d="M5 15l7-7 7 7"
             />
           </svg>
-        </div>
+        </button>
       </div>
 
       <div className="flex flex-col items-center justify-center flex-grow w-full">
-        <div className="text-3xl font-bold text-center p-2">
-          what do you want to watch?
-        </div>
+        <div className="title">what do you want to watch?</div>
 
         <div className="flex sm:text-lg whitespace-nowrap overflow-x-scroll space-x-4 sm:space-x-6 p-4 md:px-10 max-w-full scrollbar-hide">
           <ToggleButton
@@ -55,7 +53,7 @@ export default function QuestionContentType({
       <div className="flex flex-col items-end justify-center pb-2">
         <div className="pb-2 w-full text-center">1 / 7</div>
 
-        <div onClick={pageDown}>
+        <button className="btn-page-nav" onClick={pageDown}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-10 w-10"
@@ -70,7 +68,7 @@ export default function QuestionContentType({
               d="M19 9l-7 7-7-7"
             />
           </svg>
-        </div>
+        </button>
       </div>
     </div>
   );
