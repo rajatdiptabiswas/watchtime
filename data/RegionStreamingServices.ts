@@ -504,7 +504,7 @@ const RegionStreamingServices: RegionStreamingServicesType = {
         'Starz',
       ],
     },
-    'UK': {
+    'United Kingdom': {
       regionCode: 'GB',
       streamingService: [
         'Netflix',
