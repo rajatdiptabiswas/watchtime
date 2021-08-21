@@ -20,7 +20,7 @@ export default function SelectDropdown({
         onChange={(event) => updateSelectedOption(event.target.value)}
       >
         {options.map((option, index) => (
-          <option key={index} value={option} className="">
+          <option key={index} value={option} className="text-gray-900">
             {typeof option === 'string' ? option.toLowerCase() : option}
           </option>
         ))}
