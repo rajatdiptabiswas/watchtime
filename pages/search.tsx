@@ -36,7 +36,7 @@ export default function search({
           id={result.id}
           title={result.original_title}
           // TODO: fix placeholder year
-          year={result.release_date?.split('-')[0] || '20XX'}
+          year={result.release_date?.split('-')[0]}
           // overview={result.overview}
           rating={result.vote_average}
           posterPath={result.poster_path}
@@ -47,7 +47,7 @@ export default function search({
           id={result.id}
           title={result.original_name}
           // TODO: fix placeholder year
-          year={result.first_air_date?.split('-')[0] || '20XX'}
+          year={result.first_air_date?.split('-')[0]}
           // overview={result.overview}
           rating={result.vote_average}
           posterPath={result.poster_path}

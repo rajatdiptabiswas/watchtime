@@ -62,7 +62,7 @@ export default function QuestionStreamingService({
             streamingRegionState
           ].streamingService.map((service, index) => (
             // TODO: create card component for streaming services
-            <div
+            <button
               key={index}
               style={{
                 backgroundColor: streamingServicesState[service]
@@ -73,7 +73,7 @@ export default function QuestionStreamingService({
               onClick={() => updateStreamingServices(service)}
             >
               {StreamingServiceDetails[service].name}
-            </div>
+            </button>
           ))}
         </div>
       </div>
