@@ -9,6 +9,8 @@ import QuestionYearRange from '../components/Questions/QuestionYearRange';
 import QuestionRatingRange from '../components/Questions/QuestionRatingRange';
 import QuestionStreamingService from '../components/Questions/QuestionStreamingService';
 import GenreCodes from '../data/GenreCodes';
+import StreamingServiceDetails from '../data/StreamingServiceDetails';
+import RegionStreamingServices from '../data/RegionStreamingServices';
 
 export default function questions() {
   const router = useRouter();
@@ -28,6 +30,18 @@ export default function questions() {
     return genresState;
   };
 
+  const getInitialStreamingServicesState = (): {
+    [service: string]: boolean;
+  } => {
+    let streamingServicesState: {
+      [service: string]: boolean;
+    } = {};
+    for (const service of Object.keys(StreamingServiceDetails)) {
+      streamingServicesState[service] = false;
+    }
+    return streamingServicesState;
+  };
+
   // states
   const [page, setPage] = useState(1);
   const [contentType, setContentType] = useState({ movie: true, tv: false });
@@ -44,8 +58,10 @@ export default function questions() {
     start: 0.0,
     end: 10.0,
   });
-  const [streamingRegion, setStreamingRegion] = useState(null);
-  const [streamingService, setStreamingService] = useState(null);
+  const [streamingRegion, setStreamingRegion] = useState('United States');
+  const [streamingServices, setStreamingServices] = useState(
+    getInitialStreamingServicesState()
+  );
 
   // page control
   const pageUp = (): void => {
@@ -120,6 +136,23 @@ export default function questions() {
     setRatingRange(updatedRatingRange);
   };
 
+  // streaming services
+  const updateStreamingRegion = (region: string): void => {
+    setStreamingRegion(region);
+    setStreamingServices(getInitialStreamingServicesState());
+  };
+
+  const updateStreamingServices = (service: string): void => {
+    const updateStreamingServices: {
+      [service: string]: boolean;
+    } = {
+      ...streamingServices,
+    };
+    updateStreamingServices[service] = !updateStreamingServices[service];
+
+    setStreamingServices(updateStreamingServices);
+  };
+
   const getRecommendations = () => {
     let url = '/recommendations';
     url += `/${contentType.movie ? 'movie' : 'tv'}`;
@@ -152,6 +185,30 @@ export default function questions() {
     if (ratingRange.start !== 0.0 || ratingRange.end !== 10.0) {
       query += `&ratingStart=${ratingRange.start}`;
       query += `&ratingEnd=${ratingRange.end}`;
+    }
+
+    // streaming services
+    let streamingServiceCodes: number[] = [];
+    for (const [service, isServiceSelected] of Object.entries(
+      streamingServices
+    )) {
+      if (isServiceSelected) {
+        streamingServiceCodes = streamingServiceCodes.concat(
+          StreamingServiceDetails[service].id
+        );
+      }
+    }
+
+    if (
+      streamingRegion !== 'United States' ||
+      streamingServiceCodes.length > 0
+    ) {
+      query += `&streamingRegion=${
+        RegionStreamingServices[contentType.movie ? 'movie' : 'tv'][
+          streamingRegion
+        ].regionCode
+      }`;
+      query += `&streamingServices=${streamingServiceCodes.join('|')}`;
     }
 
     router.push(url + query);
@@ -219,7 +276,17 @@ export default function questions() {
           />
         );
       case 7:
-        return <QuestionStreamingService pageUp={pageUp} />;
+        return (
+          <QuestionStreamingService
+            contentType={contentType.movie ? 'movie' : 'tv'}
+            streamingRegionState={streamingRegion}
+            updateStreamingRegion={updateStreamingRegion}
+            streamingServicesState={streamingServices}
+            updateStreamingServices={updateStreamingServices}
+            pageUp={pageUp}
+            getRecommendations={getRecommendations}
+          />
+        );
       default:
         return (
           <div className="flex items-center justify-center mt-16 min-h-container text-xl">

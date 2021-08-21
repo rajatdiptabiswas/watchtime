@@ -21,7 +21,7 @@ export default function SelectDropdown({
       >
         {options.map((option, index) => (
           <option key={index} value={option} className="">
-            {option}
+            {typeof option === 'string' ? option.toLowerCase() : option}
           </option>
         ))}
       </select>

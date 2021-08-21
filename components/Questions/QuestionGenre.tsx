@@ -40,7 +40,6 @@ export default function QuestionGenre({
       </div>
 
       <div className="flex flex-col items-center justify-center flex-grow w-full">
-        {/* TODO: add the rest of the genres */}
         <div className="title">what are you in the mood for?</div>
 
         <div className="flex sm:text-lg whitespace-nowrap overflow-x-scroll space-x-4 sm:space-x-6 p-4 md:px-10 max-w-full scrollbar-hide">
