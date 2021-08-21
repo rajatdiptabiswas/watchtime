@@ -3,7 +3,7 @@ import Image, { ImageLoader, ImageLoaderProps } from 'next/image';
 interface MovieCardProps {
   id: number;
   title: string;
-  year: string;
+  year?: string;
   rating: string;
   // overview: string;
   posterPath: string;
@@ -57,7 +57,7 @@ export default function MovieCard({
       </div>
       <div className="p-2 text-center w-52">
         <div className="font-bold text-lg truncate">{`${title}`}</div>
-        <div className="text-base">{`(${year})`}</div>
+        <div className="text-base">{year ? `(${year})` : `¯\\_(ツ)_/¯`}</div>
         {/* <div className="text-gray-500 text-sm">{overview}</div> */}
       </div>
       <div className="text-center mb-4">
