@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { signIn, signOut, useSession } from 'next-auth/client';
 
 export default function NavBar() {
-  const [session, loading] = useSession();
   // TODO: add next-auth login
+  // const [session, loading] = useSession();
   const [loggedIn, setLoggedIn] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 

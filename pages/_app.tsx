@@ -4,8 +4,8 @@ import '../styles/globals.css';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Provider session={pageProps.session}>
-      <Component {...pageProps} />
-    </Provider>
+    // <Provider session={pageProps.session}>
+    <Component {...pageProps} />
+    // </Provider>
   );
 }
