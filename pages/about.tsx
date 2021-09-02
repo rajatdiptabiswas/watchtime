@@ -8,7 +8,15 @@ export default function about() {
       <div className="flex flex-col items-center justify-center mt-16 min-h-container">
         <div className="space-y-10 text-center px-6 w-3/4 md:w-1/2">
           <div className="title mb-4">about</div>
+          <div className="flex items-center justify-center">
+            <div className="px-4 md:w-2/3 text-xl">
+              <span className="font-light inline-block">watch</span>
+              <span className="font-bold inline-block">time</span>
+              &nbsp; helps you find what to watch based on the time available
+            </div>
+          </div>
           <div className="space-y-2">
+            <div className="text-gray-400">built by</div>
             <div className="text-xl">Rajat Dipta Biswas</div>
             <div className="space-x-4">
               <SocialIcon
@@ -35,11 +43,11 @@ export default function about() {
               </div>
             </div>
             <div className="px-4 w-3/4 md:w-1/2 text-gray-400">
-              This product uses the TMDb API but is not endorsed or certified by
+              this product uses the TMDb API but is not endorsed or certified by
               TMDb
             </div>
           </div>
-          <div className="text-gray-400">2021 ⓒ All Rights Reserved</div>
+          <div className="text-gray-400">2021 ⓒ all rights reserved</div>
         </div>
       </div>
     </Layout>
