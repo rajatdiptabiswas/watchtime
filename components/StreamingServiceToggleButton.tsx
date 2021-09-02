@@ -1,17 +1,17 @@
 import Image from 'next/image';
 import StreamingServiceDetails from './../data/StreamingServiceDetails';
 
-interface StreamingServiceCardProps {
+interface StreamingServiceToggleButtonProps {
   service: string;
   streamingServicesState: { [service: string]: boolean };
   updateStreamingServices: (service: string) => void;
 }
 
-export default function StreamingServiceCard({
+export default function StreamingServiceToggleButton({
   service,
   streamingServicesState,
   updateStreamingServices,
-}: StreamingServiceCardProps) {
+}: StreamingServiceToggleButtonProps) {
   return (
     <button
       style={{

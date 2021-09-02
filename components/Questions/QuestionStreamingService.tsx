@@ -1,5 +1,5 @@
 import SelectDropdown from './../SelectDropdown';
-import StreamingServiceCard from '../StreamingServiceCard';
+import StreamingServiceToggleButton from '../StreamingServiceToggleButton';
 import RegionStreamingServices from './../../data/RegionStreamingServices';
 import StreamingServiceDetails from './../../data/StreamingServiceDetails';
 
@@ -61,7 +61,7 @@ export default function QuestionStreamingService({
           {RegionStreamingServices[contentType][
             streamingRegionState
           ].streamingService.map((service, index) => (
-            <StreamingServiceCard
+            <StreamingServiceToggleButton
               key={index}
               service={service}
               streamingServicesState={streamingServicesState}
