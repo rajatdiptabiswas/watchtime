@@ -7,6 +7,7 @@ export default function Layout({ children }: { children: ReactNode }) {
     <>
       <Head>
         <title>watchtime</title>
+        <link rel="icon" href="/watchtime.svg" />
       </Head>
       <NavBar />
       <>{children}</>

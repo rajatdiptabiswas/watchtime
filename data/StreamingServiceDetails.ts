@@ -38,11 +38,11 @@ const StreamingServiceDetails: StreamingServiceDetailsType = {
     logo: '/disney-hotstar-white.svg',
     id: [377],
   },
-  'Hulu': { name: 'hulu', color: '#1CE783', logo: '/Hulu.svg', id: [15] },
+  'Hulu': { name: 'hulu', color: '#1CE783', logo: '/hulu-white.svg', id: [15] },
   'HBO Max': {
     name: 'HBO Max',
     color: '#000000',
-    logo: '/hbo-max.svg',
+    logo: '/hbo-max-white.svg',
     id: [384],
   },
   'Crunchyroll': {

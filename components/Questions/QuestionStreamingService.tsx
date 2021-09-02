@@ -1,4 +1,5 @@
 import SelectDropdown from './../SelectDropdown';
+import StreamingServiceCard from '../StreamingServiceCard';
 import RegionStreamingServices from './../../data/RegionStreamingServices';
 import StreamingServiceDetails from './../../data/StreamingServiceDetails';
 
@@ -43,7 +44,6 @@ export default function QuestionStreamingService({
       </div>
 
       <div className="flex flex-col items-center justify-center flex-grow w-full space-y-4">
-        {/* TODO: add logos for streaming services */}
         <div className="title">which streaming services do you use?</div>
 
         <div className="flex items-center justify-center space-x-6">
@@ -61,19 +61,12 @@ export default function QuestionStreamingService({
           {RegionStreamingServices[contentType][
             streamingRegionState
           ].streamingService.map((service, index) => (
-            // TODO: create card component for streaming services
-            <button
+            <StreamingServiceCard
               key={index}
-              style={{
-                backgroundColor: streamingServicesState[service]
-                  ? StreamingServiceDetails[service].color
-                  : undefined,
-              }}
-              className="bg-gray-800 rounded shadow-md px-16 py-8 cursor-pointer"
-              onClick={() => updateStreamingServices(service)}
-            >
-              {StreamingServiceDetails[service].name}
-            </button>
+              service={service}
+              streamingServicesState={streamingServicesState}
+              updateStreamingServices={updateStreamingServices}
+            />
           ))}
         </div>
       </div>
