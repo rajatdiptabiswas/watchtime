@@ -63,9 +63,13 @@ export default function QuestionStreamingService({
           ].streamingService.map((service, index) => (
             <StreamingServiceToggleButton
               key={index}
-              service={service}
-              streamingServicesState={streamingServicesState}
-              updateStreamingServices={updateStreamingServices}
+              logoPath={
+                '/streaming-service-logos' +
+                StreamingServiceDetails[service].logo
+              }
+              color={StreamingServiceDetails[service].color}
+              isSelected={streamingServicesState[service]}
+              onButtonClick={() => updateStreamingServices(service)}
             />
           ))}
         </div>
