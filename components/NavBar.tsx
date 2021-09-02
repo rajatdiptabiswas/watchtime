@@ -47,14 +47,17 @@ export default function NavBar() {
             </svg>
           </div>
 
-          <div className="flex text-xl">
+          <div className="flex text-xl sm:text-2xl">
             <span className="font-light">watch</span>
             <span className="font-bold">time</span>
           </div>
         </div>
 
+        {/* spacing */}
+        <div className="flex-grow"></div>
+
         {/* navigation menu options */}
-        <div className="hidden sm:flex px-4 space-x-4">
+        <div className="hidden sm:flex space-x-4 text-lg">
           <div className="flex items-end">
             <Link href="/questions">home</Link>
           </div>
@@ -65,9 +68,6 @@ export default function NavBar() {
             <Link href="/about">about</Link>
           </div>
         </div>
-
-        {/* spacing */}
-        <div className="flex-grow"></div>
 
         {/* mobile navigation button */}
         <button
@@ -108,7 +108,7 @@ export default function NavBar() {
         </button>
 
         {/* login button */}
-        <div className="hidden sm:flex items-end cursor-pointer">
+        {/* <div className="hidden sm:flex items-end cursor-pointer">
           {!session && (
             <a
               href="/api/auth/signin"
@@ -135,7 +135,7 @@ export default function NavBar() {
               </span>
             </a>
           )}
-        </div>
+        </div> */}
       </div>
 
       {/* mobile menu */}
@@ -154,7 +154,7 @@ export default function NavBar() {
         <div>
           <Link href="/about">about</Link>
         </div>
-        <div>
+        {/* <div>
           {!session && (
             <a
               href="/api/auth/signin"
@@ -177,7 +177,7 @@ export default function NavBar() {
               </span>
             </a>
           )}
-        </div>
+        </div> */}
       </div>
     </nav>
   );
