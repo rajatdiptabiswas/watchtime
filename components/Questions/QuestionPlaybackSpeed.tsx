@@ -71,7 +71,7 @@ export default function QuestionPlaybackSpeed({
         </div>
 
         <div className="text-center space-y-2">
-          <div className="text-gray-400 font-semibold text-xl">
+          <div className="text-gray-400 font-semibold text-xl md:text-2xl">
             total watchtime
           </div>
           <div className="text-xl">

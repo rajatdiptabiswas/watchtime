@@ -22,7 +22,13 @@ export default function StreamingServiceToggleButton({
       onClick={onButtonClick}
     >
       <div className="relative h-10 md:h-12 w-40 md:w-48">
-        <Image src={logoPath} alt="logo" sizes="100%" layout="fill" />
+        <Image
+          src={logoPath}
+          alt="logo"
+          sizes="100%"
+          layout="fill"
+          priority={true}
+        />
       </div>
     </button>
   );

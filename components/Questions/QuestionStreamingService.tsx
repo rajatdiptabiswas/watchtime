@@ -47,7 +47,7 @@ export default function QuestionStreamingService({
         <div className="title">which streaming services do you use?</div>
 
         <div className="flex items-center justify-center space-x-6">
-          <div className="text-gray-400 text-lg">region</div>
+          <div className="text-gray-400 text-lg font-semibold">region</div>
           <SelectDropdown
             options={Object.keys(RegionStreamingServices[contentType]).sort()}
             selectedOption={streamingRegionState}
