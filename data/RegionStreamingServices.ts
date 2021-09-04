@@ -101,7 +101,6 @@ const RegionStreamingServices: RegionStreamingServicesType = {
         'Disney Plus',
         'Crunchyroll',
         'Apple TV Plus',
-        'Disney Plus',
         'YouTube Premium',
         'Starz',
       ],
