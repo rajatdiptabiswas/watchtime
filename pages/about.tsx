@@ -43,8 +43,8 @@ export default function about() {
               </div>
             </div>
             <div className="px-4 w-3/4 md:w-1/2 text-gray-400">
-              this product uses the TMDb API but is not endorsed or certified by
-              TMDb
+              this product uses the TMDB API but is not endorsed or certified by
+              TMDB
             </div>
           </div>
           <div className="text-gray-400">2021 ⓒ all rights reserved</div>
