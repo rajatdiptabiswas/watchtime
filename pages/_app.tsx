@@ -1,5 +1,5 @@
 import { AppProps } from 'next/app';
-import { Provider } from 'next-auth/client';
+// import { Provider } from 'next-auth/client';
 import '../styles/globals.css';
 
 export default function App({ Component, pageProps }: AppProps) {

@@ -23,7 +23,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           name="keywords"
           content="watch, time, watchtime, tv, series, movie, tmdb, playback speed, search, recommendation, netflix, prime video, disney, hulu, apple tv, hbo max, paramount, peacock, youtube premium, showtime"
         />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="language" content="English" />
         <meta name="author" content="Rajat Dipta Biswas" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

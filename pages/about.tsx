@@ -6,18 +6,20 @@ export default function about() {
   return (
     <Layout>
       <div className="flex flex-col items-center justify-center mt-16 min-h-container">
-        <div className="space-y-10 text-center px-6 w-3/4 md:w-1/2">
+        <div className="space-y-10 text-center p-6 pb-12 w-3/4 md:w-1/2">
           <div className="title mb-4">about</div>
           <div className="flex items-center justify-center">
             <div className="px-4 md:w-2/3 text-xl">
               <span className="font-light inline-block">watch</span>
               <span className="font-bold inline-block">time</span>
-              &nbsp; helps you find what to watch based on the time available
+              &nbsp;helps you find what to watch based on the time available
             </div>
           </div>
           <div className="space-y-2">
-            <div className="text-gray-400">built by</div>
-            <div className="text-xl">Rajat Dipta Biswas</div>
+            <div>
+              <div className="text-gray-400">built by</div>
+              <div className="text-xl">rajat dipta biswas</div>
+            </div>
             <div className="space-x-4">
               <SocialIcon
                 url="https://github.com/rajatdiptabiswas"
