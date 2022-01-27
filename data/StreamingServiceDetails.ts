@@ -41,7 +41,7 @@ const StreamingServiceDetails: StreamingServiceDetailsType = {
   'Hulu': { name: 'hulu', color: '#1CE783', logo: '/hulu-white.svg', id: [15] },
   'HBO Max': {
     name: 'HBO Max',
-    color: '#000000',
+    color: '#5822B4',
     logo: '/hbo-max-white.svg',
     id: [384],
   },
