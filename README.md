@@ -12,6 +12,13 @@
 *Live demo on [Vercel](https://vercel.com/) · [watchtime-rajatdiptabiswas.vercel.app](https://watchtime-rajatdiptabiswas.vercel.app).*
 
 
+![Content Type](https://user-images.githubusercontent.com/32998741/164959232-80b4e567-29a0-413b-a5e7-2eceee3d8b76.png)
+![Time Available](https://user-images.githubusercontent.com/32998741/164959435-f64f59c4-ec48-4be4-8aa8-795c991f5ab7.png)
+![Playback Speed](https://user-images.githubusercontent.com/32998741/164959244-a5a19bdf-dfbe-4f5d-a4fa-737c93140f83.png)
+![Streaming Services](https://user-images.githubusercontent.com/32998741/164959253-29d98ab2-3fe0-40d9-9675-e6cd48d1b386.png)
+![Recommendations](https://user-images.githubusercontent.com/32998741/164959259-17e807c2-b75d-4f75-ab9d-b91ca9fe7931.png)
+![Search](https://user-images.githubusercontent.com/32998741/164959262-6f423420-c678-4cac-b596-eaa28be0e610.png)
+
 
 ## Built with
 
